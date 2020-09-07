@@ -117,14 +117,14 @@
           // we'll use this later to show our template
 
           component.set("loadingCategories", true);
-          // helps us show a loading spinner until categories are ready
+          // helps us show a loading spinner until topics are ready
 
-          ajax("/categories.json").then (function(result){
+          ajax("/tags/featured-category.json").then (function(result){
           // Get posts from tag "featured" using AJAX
           // if this were a category you'd use /c/featured.json
 
             featuredCategories = [];
-            // Create an empty array, we'll push categories into it
+            // Create an empty array, we'll push topics into it
 
             var featuredUsers = result.users;
             // Get the relevant users
@@ -168,16 +168,16 @@
   data-template-name="/connectors/above-main-container/featured-topics"
 >
 
-  {{#if displayfeaturedTopics}}
+  {{#if displayfeaturedCategories}}
   <!-- If our component is true, show this content: -->
 
       <div class="custom-featured-topics-wrapper">
-        {{conditional-loading-spinner condition=loadingTopics}}
+        {{conditional-loading-spinner condition=loadingcategories}}
         <!-- Show a loading spinner if topics are loading -->
 
-        {{#unless loadingTopics}}
+        {{#unless loadingCategories}}
         <!-- Unless topics are still loading... -->
-          {{topic-list topics=featuredTopics showPosters=true}}
+          {{topic-list topics=featuredCategories showPosters=true}}
           <!-- Show the topic list -->
         {{/unless}}
 
