@@ -2,6 +2,14 @@
   href="https://fonts.googleapis.com/css?family=Roboto:400,500,700"
   rel="stylesheet"
 />
+<script
+  type="text/x-handlebars"
+  data-template-name="/connectors/above-main-container/"
+>
+  <h1>Welcome to the unity community</h1>
+    <div style="height: 200px; width: 200px;background: red"></div>
+</script>
+
 <script type="text/discourse-plugin" version="0.8">
   const ajax = require('discourse/lib/ajax').ajax;
   const Topic = require('discourse/models/topic').default;
@@ -92,10 +100,4 @@
       </div>
 
   {{/if}}
-</script>
-<script
-  type="text/x-handlebars"
-  data-template-name="/connectors/above-main-container/"
->
-  <div style="height: 200px; width: 200px;background: red"></div>
 </script>
