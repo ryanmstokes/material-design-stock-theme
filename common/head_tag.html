@@ -165,14 +165,14 @@
 
 <script
   type="text/x-handlebars"
-  data-template-name="/connectors/above-main-container/featured-topics"
+  data-template-name="/connectors/above-main-container/featured-categories"
 >
 
   {{#if displayfeaturedCategories}}
   <!-- If our component is true, show this content: -->
 
       <div class="custom-featured-topics-wrapper">
-        {{conditional-loading-spinner condition=loadingcategories}}
+        {{conditional-loading-spinner condition=loadingCategories}}
         <!-- Show a loading spinner if topics are loading -->
 
         {{#unless loadingCategories}}
