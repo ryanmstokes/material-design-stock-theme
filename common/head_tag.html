@@ -93,95 +93,9 @@
 
   {{/if}}
 </script>
-
-<script type="text/discourse-plugin" version="0.8">
-  const ajax = require('discourse/lib/ajax').ajax;
-  const Topic = require('discourse/models/topic').default;
-  // We're using ajax and the Topic model from Discourse
-
-  api.registerConnectorClass('above-main-container', 'featured-categories', {
-    // above-main-container is the plugin outlet,
-    // featured-topics is your custom component name
-
-    setupComponent(args, component) {
-
-      api.onPageChange((url, title) => {
-        if ((url == "/") || (url == "/latest") ){
-        // on page change, check if url matches
-        // if your homepage isn't /latest change this to /categories
-
-          $('html').addClass('custom-featured-categories');
-          // add a class to the HTML tag for easy CSS targetting
-
-          component.set('displayfeaturedCategories', true);
-          // we'll use this later to show our template
-
-          component.set("loadingCategories", true);
-          // helps us show a loading spinner until topics are ready
-
-          ajax("/tags/featured-category.json").then (function(result){
-          // Get posts from tag "featured" using AJAX
-          // if this were a category you'd use /c/featured.json
-
-            featuredCategories = [];
-            // Create an empty array, we'll push topics into it
-
-            var featuredUsers = result.users;
-            // Get the relevant users
-
-            result.topic_list.topics.slice(0,4).forEach(function(topic){
-            // We're extracting the topics starting at 0 and ending at 4
-            // This means we'll show 3 total. Increase 4 to see more.
-
-              topic.posters.forEach(function(poster){
-                poster.user = $.grep(featuredUsers, function(e){ return e.id == poster.user_id; })[0];
-              });
-              // Associate users with our topic
-
-              featuredTopics.push(Topic.create(topic));
-              // Push our topics into the featuredTopics array
-            });
-
-            component.set("loadingTopics", false);
-            // Topics are loaded, stop showing the loading spinner
-
-            component.set('featuredCategories', featuredCategories);
-            // Setup our component with the topics from the array
-          });
-
-        } else {
-        // If the page doesn't match the urls above, do this:
-
-          $('html').removeClass('custom-featured-categories');
-          // Remove our custom class
-
-          component.set('displayfeaturedCategories', false);
-          // Don't display our customization
-        }
-      });
-    }
-  });
-</script>
-
 <script
   type="text/x-handlebars"
-  data-template-name="/connectors/above-main-container/featured-categories"
+  data-template-name="/connectors/topic-above-post-stream/foobar"
 >
-
-  {{#if displayfeaturedCategories}}
-  <!-- If our component is true, show this content: -->
-
-      <div class="custom-featured-topics-wrapper">
-        {{conditional-loading-spinner condition=loadingCategories}}
-        <!-- Show a loading spinner if topics are loading -->
-
-        {{#unless loadingCategories}}
-        <!-- Unless topics are still loading... -->
-          {{topic-list topics=featuredCategories showPosters=true}}
-          <!-- Show the topic list -->
-        {{/unless}}
-
-      </div>
-
-  {{/if}}
+  <div style="height: 200px; width: 200px;background: red"></div>
 </script>
