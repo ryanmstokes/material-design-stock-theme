@@ -7,11 +7,11 @@
   },
   "color_schemes": {
     "Material Teal/Amber": {
-      "primary": "212121",
+      "primary": "252A2F",
       "secondary": "fafafa",
       "tertiary": "ffa000",
       "quaternary": "00796b",
-      "header_background": "00796b",
+      "header_background": "ffffff",
       "header_primary": "ffffff",
       "highlight": "ffff8d",
       "danger": "ff5722",
